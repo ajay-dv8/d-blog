@@ -1,0 +1,107 @@
+create a table called deposit, 
+it will have columns id, user_id, deposite_amount, email, phone and username
+id will be a generated uuid and will be the primary key
+user_id and email will be foreign keys that will be referenced from the id field and the email field of the auth.users table
+username will be a foreign key that will be referenced from the already existing profiles table
+deposit_amount which will take the amount of money deposited by the user
+and phone will be a foreign key that will be fetched from the phone field in the already existing wallet table by comparing the user_id in the tables 
+
+write the needed functions and triggers for the action needed, the functions should be definers 
+the code should be well written and commented
+
+
+
+
+
+sudo cp /etc/xrdp/xrdp.ini /etc/xrdp/xrdp.ini.bak
+sudo sed -i 's/3389/3389/g' /etc/xrdp/xrdp.ini 
+sudo sed -i 's/max_bpp=32/#max_bpp=32\nmax_bpp=128/g' /etc/xrdp/xrdp.ini
+sudo sed -i 's/xserverbpp=24/#xserverbpp=24\nxserverbpp=128/g' /etc/xrdp/xrdp.ini
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+"iss":"https://accounts.google.com",
+"sub":"109034359836419729254",
+"name":"Juni Pencil",
+"email":"junipencil3@gmail.com",
+"picture":"https://lh3.googleusercontent.com/a/ACg8ocIzaPZ9EX9kBbE3lqbP8Zx_RWmtdDMUTK87vZcYFoFNKA=s96-c",
+"full_name":"Juni Pencil",
+"avatar_url":"https://lh3.googleusercontent.com/a/ACg8ocIzaPZ9EX9kBbE3lqbP8Zx_RWmtdDMUTK87vZcYFoFNKA=s96-c",
+"provider_id":"109034359836419729254",
+"email_verified":true,
+"phone_verified":false
+}
+
+
+
+{"provider":"google","providers":["google"]}
+
+
+begin
+  insert into public.profiles(id, email, name, username,avatar_url)
+  values(
+    new.id,
+    new.email,
+    new.raw_user_meta_data->>'name',
+    new.raw_user_meta_data->>'user_name',
+    new.raw_user_meta_data->>'avatar_url',
+  );
+  return new;
+end;
